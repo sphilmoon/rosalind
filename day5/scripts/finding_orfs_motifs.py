@@ -80,3 +80,20 @@ def codon_usage(sequence):
 for record in sequences:
 	usage = codon_usage(record.seq)
 	print(f"Codon usage for {record.id} is {usage}")
+
+# customizing plots using pandas datafram and seaborn for enhancing appearnaces
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+
+# Convert dictionary to DataFrame for Seaborn
+codon_df = pd.DataFrame(list(usage.items()), columns=['Codon', 'Frequency'])
+
+# Create a Seaborn bar plot
+plt.figure(figsize=(12, 6))
+sns.barplot(x='Codon', y='Frequency', data=codon_df, palette='viridis')
+plt.xlabel("Codon")
+plt.ylabel("Frequency")
+plt.title("Codon Usage Frequency")
+plt.xticks(rotation=90)
+plt.show()
